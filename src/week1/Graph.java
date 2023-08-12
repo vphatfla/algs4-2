@@ -1,4 +1,7 @@
 package week1;
+
+import java.util.Iterator;
+
 // adjancency-list graph representation
 // use bag[]
 // use adj-list because
@@ -22,7 +25,45 @@ public class Graph {
         adj[v].add(w);
         adj[w].add(v);
     }
+
+    void DFSUtil(int v, boolean visited[]) {
+        visited[v] = true; // mark the current node as true
+        System.out.println(v + " ");
+
+        // recur for all the vertices adjacent to this vertex
+        Iterator<Integer> currAdj =  adj[v].listIterator();
+        while (currAdj.hasNext()) {
+            int n = currAdj.next();
+            if (!visited[n])
+                DFSUtil(n, visited);
+        }
+    }
+    // do the DFS traversal
+    void DFS(int v) {
+        boolean visited[] = new boolean[V];
+        DFSUtil(v,visited);
+    }
     public Iterable<Integer> adj(int v) {
         return adj[v];
+    }
+
+    // Driver Code
+    public static void main(String args[])
+    {
+        Graph g = new Graph(4);
+
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 3);
+
+        System.out.println(
+                "Following is Depth First Traversal "
+                        + "(starting from vertex 2)");
+
+        // Function call
+        g.DFS(2);
     }
 }

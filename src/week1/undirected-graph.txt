@@ -1,0 +1,3 @@
+dept first search use visited[] array to keep track of all the node that already visited
+
+connective component: have an array call cc[], keep track of the root, ex: 0-1-2 from root 0 so cc[1] = 0, then cc[2] = 0, because c[0]==c[2], 0 and 2 is connected

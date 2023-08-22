@@ -1,6 +1,7 @@
 package week1;
 
 import java.util.Iterator;
+import java.util.Stack;
 
 // adjancency-list graph representation
 // use bag[]
@@ -21,12 +22,16 @@ public class Graph {
         }
     }
 
+    public int V() {
+        return this.V;
+    }
+
     public void addEdge(int v, int w) {
         adj[v].add(w);
         adj[w].add(v);
     }
 
-    void DFSUtil(int v, boolean visited[]) {
+    void DFSUtil(int v, boolean[] visited) {
         visited[v] = true; // mark the current node as true
         System.out.println(v + " ");
 
@@ -40,7 +45,8 @@ public class Graph {
     }
     // do the DFS traversal
     void DFS(int v) {
-        boolean visited[] = new boolean[V];
+        Stack<Integer> st = new Stack<>();
+        boolean[] visited = new boolean[V];
         DFSUtil(v,visited);
     }
     public Iterable<Integer> adj(int v) {
@@ -48,7 +54,7 @@ public class Graph {
     }
 
     // Driver Code
-    public static void main(String args[])
+    public static void main(String[] args)
     {
         Graph g = new Graph(4);
 
